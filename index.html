@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghulam Qasim — AI Fluency Internship Portfolio & Assignments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0B0F19;
+            --surface-color: #1F2937;
+            --surface-border: #374151;
+            --text-primary: #F3F4F6;
+            --text-secondary: #9CA3AF;
+            --accent-blue: #3B82F6;
+            --accent-hover: #2563EB;
+            --badge-green: #10B981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--surface-border);
+            margin-bottom: 2.5rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-box {
+            width: 48px;
+            height: 48px;
+            background-color: var(--surface-color);
+            border: 2px solid var(--accent-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        .brand-text h1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .brand-text p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .live-badge {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--badge-green);
+            border: 1px solid var(--badge-green);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .live-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: var(--badge-green);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.6) 0%, rgba(11, 15, 25, 0.9) 100%);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            max-width: 720px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-blue);
+        }
+
+        .card-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            border-top: 1px solid var(--surface-border);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brand">
+                <div class="logo-box">GQ</div>
+                <div class="brand-text">
+                    <h1>Ghulam Qasim</h1>
+                    <p>FlyRank Machine Learning & AI Fluency Intern</p>
+                </div>
+            </div>
+            <span class="live-badge">PORTFOLIO LIVE</span>
+        </header>
+
+        <section class="hero">
+            <h2>Production AI & Machine Learning Systems</h2>
+            <p>I build production-grade, AI-native applications and Machine Learning pipelines that solve real-world automation bottlenecks with measurable speed, accuracy, and ROI.</p>
+            <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks" target="_blank" class="cta-btn">View GitHub Repository →</a>
+        </section>
+
+        <div class="section-title">
+            <span>Completed FlyRank Internship Tasks (13 Deliverables)</span>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 1 • FL-01</div>
+                    <h3>#1 AI Workflow Audit</h3>
+                    <p>Task mapping, 3 target workflows, and tool account setup verification.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%231%20AI%20Workflow%20Audit%20and%20Tool%20Setup" target="_blank" class="card-link">Explore Task 1 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 1 • Setup</div>
+                    <h3>#2 Draw the Path</h3>
+                    <p>Lean 4-page sitemap sketch, Claude workspace config, and pressure-test log.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%232%20Draw%20the%20Path%20-%20Portfolio%20Sitemap%20%2B%20Toolkit" target="_blank" class="card-link">Explore Task 2 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 1 • Setup</div>
+                    <h3>#3 What Are You Proving</h3>
+                    <p>1-paragraph proof statement (One Claim, One Person, One Action) & Socratic log.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%233%20What%20Are%20You%20Proving" target="_blank" class="card-link">Explore Task 3 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 2 • Foundations</div>
+                    <h3>#4 Frame It as Cases</h3>
+                    <p>Voice Card, 3-beat case studies, bio/CTA, and before/after copy comparison.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%234%20Frame%20It%20as%20Cases" target="_blank" class="card-link">Explore Task 4 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 2 • Foundations</div>
+                    <h3>#5 The Prompt Ladder</h3>
+                    <p>6-run prompt ladder adding 1 layer per iteration with output difference notes.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%235%20The%20Prompt%20Ladder" target="_blank" class="card-link">Explore Task 5 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 2 • FL-02</div>
+                    <h3>#6 Prompting Fundamentals</h3>
+                    <p>5 named technique iterations on real task & Claude vs ChatGPT benchmark.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%236%20Prompting%20Fundamentals%20on%20Real%20Tasks" target="_blank" class="card-link">Explore Task 6 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 3 • Foundations</div>
+                    <h3>#7 Build Identity Kit</h3>
+                    <p>Typography, 4-color palette (#0B0F19), GQ Monogram logo, and style note.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%237%20Decide%20Once%20-%20Build%20Your%20Identity%20Kit" target="_blank" class="card-link">Explore Task 7 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 3 • Foundations</div>
+                    <h3>#8 Curate Your Images</h3>
+                    <p>Real captures vs AI connective tissue manifest & image rejection discernment note.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%238%20Curate%20Your%20Images" target="_blank" class="card-link">Explore Task 8 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 3 • Foundations</div>
+                    <h3>#9 Map Content & CTAs</h3>
+                    <p>1-line claim, ordered section content map, and still-need-to-gather list.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%239%20The%20Through-Line%20-%20Map%20Content%20and%20CTAs" target="_blank" class="card-link">Explore Task 9 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 4 • Build</div>
+                    <h3>#10 Choose Your Stack</h3>
+                    <p>Evaluation of 3 tech stacks under 4 constraints & Next.js/Vite rationale.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%2310%20Three%20Roads%20-%20Choose%20Your%20Stack" target="_blank" class="card-link">Explore Task 10 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 4 • Build</div>
+                    <h3>#11 Empty but Live</h3>
+                    <p>Live deployment verification, mobile device preview, and Claude context sync.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%2311%20Empty%20but%20Live%20-%20Ship%20a%20Blank%20Page" target="_blank" class="card-link">Explore Task 11 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 4 • FL-04</div>
+                    <h3>#12 Automation Workflow</h3>
+                    <p>3-step ML code refactoring pipeline, 5 real runs, and ~10x time accounting.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%2312%20Ship%20an%20Automation%20Workflow" target="_blank" class="card-link">Explore Task 12 →</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Week 4 • FL-05</div>
+                    <h3>#13 Agent & MCP Basics</h3>
+                    <p>780-word Workflow vs Agent explainer, active MCP tool evidence, and agent plan.</p>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/%2313%20Agent%20Concepts%20and%20MCP%20Basics" target="_blank" class="card-link">Explore Task 13 →</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Ghulam Qasim • Machine Learning & AI Fluency Intern at <a href="https://aifluency.flyrank.ai" target="_blank">FlyRank AI</a></p>
+        </footer>
+    </div>
+</body>
+</html>
