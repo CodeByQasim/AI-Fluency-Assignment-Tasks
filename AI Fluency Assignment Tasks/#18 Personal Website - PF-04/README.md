@@ -9,8 +9,8 @@
 
 ## Deliverable 1: Live HTTPS URL
 
-**Live site:** `https://ghulamqasim.netlify.app`  
-*(URL goes live after Netlify deployment — see setup steps below)*
+**Live site:** [https://ghulamqasim.netlify.app](https://ghulamqasim.netlify.app)  
+*(Deployed via Netlify Drop — public, HTTPS, no credit card required)*
 
 ---
 
