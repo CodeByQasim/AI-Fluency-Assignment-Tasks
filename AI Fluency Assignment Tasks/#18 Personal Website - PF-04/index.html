@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghulam Qasim — Machine Learning & AI Engineer</title>
+    <meta name="description" content="Ghulam Qasim builds production-grade ML systems and AI-native automation. FlyRank Machine Learning & AI Fluency Intern.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0F19;
+            --bg-2: #111827;
+            --surface: #1F2937;
+            --border: #2D3748;
+            --border-light: #374151;
+            --text: #F9FAFB;
+            --text-2: #E5E7EB;
+            --muted: #9CA3AF;
+            --muted-2: #6B7280;
+            --blue: #3B82F6;
+            --blue-dark: #2563EB;
+            --blue-glow: rgba(59, 130, 246, 0.15);
+            --green: #10B981;
+            --purple: #8B5CF6;
+            --amber: #F59E0B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── NOISE TEXTURE OVERLAY ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        /* ─── GRID BACKGROUND ─── */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 15, 25, 0.8);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo-mark {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 800; color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 6rem 0 4rem;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--blue-glow);
+            border: 1px solid rgba(59,130,246,0.3);
+            color: var(--blue);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 .accent {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 580px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--blue);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: transparent;
+            color: var(--text-2);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s, transform 0.15s;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+            transform: translateY(-1px);
+        }
+
+        /* ─── STATS ROW ─── */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 5rem;
+        }
+
+        .stat-item { }
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.03em;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        /* ─── SECTION ─── */
+        section { margin-bottom: 5rem; }
+
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-desc {
+            color: var(--muted);
+            font-size: 0.95rem;
+            max-width: 540px;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        /* ─── CAPABILITIES ─── */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .cap-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.4rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .cap-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        .cap-icon {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .cap-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .cap-card p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ─── PROJECTS ─── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            padding: 1.6rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1.5rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        .project-content { flex: 1; }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tag {
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            border: 1px solid;
+        }
+
+        .tag-blue { color: var(--blue); border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.08); }
+        .tag-green { color: var(--green); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); }
+        .tag-purple { color: var(--purple); border-color: rgba(139,92,246,0.3); background: rgba(139,92,246,0.08); }
+        .tag-amber { color: var(--amber); border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.08); }
+
+        .project-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        .project-card p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin-bottom: 1rem;
+        }
+
+        .project-result {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--green);
+        }
+
+        .project-link {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px; height: 36px;
+            background: var(--bg-2);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .project-link:hover { border-color: var(--blue); color: var(--blue); }
+
+        /* ─── LINKS BAR ─── */
+        .links-bar {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            padding: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .links-bar-left h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .links-bar-left p {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .links-bar-right {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+
+        .link-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 1rem;
+            background: var(--bg-2);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-2);
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .link-chip:hover { border-color: var(--blue); color: var(--blue); }
+        .link-chip svg { width: 14px; height: 14px; }
+
+        /* ─── INTERNSHIP BADGE ─── */
+        .badge-section {
+            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
+            border: 1px solid rgba(59,130,246,0.2);
+            border-radius: 14px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .badge-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .badge-section p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .flyrank-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.6rem 1.25rem;
+            border-radius: 30px;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-inner p {
+            font-size: 0.8rem;
+            color: var(--muted-2);
+        }
+
+        .footer-inner a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .hero { padding: 4rem 0 3rem; }
+            .stats { gap: 1.5rem; }
+            .project-card { flex-direction: column; }
+            .project-link { align-self: flex-start; }
+            .links-bar { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <div class="logo-mark">GQ</div>
+            Ghulam Qasim
+        </a>
+        <ul class="nav-links">
+            <li><a href="#capabilities">What I Build</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#connect">Connect</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+    <section class="hero">
+        <div class="hero-badge">Available for opportunities</div>
+        <h1>Machine Learning &amp;<br><span class="accent">AI Systems Engineer</span></h1>
+        <p class="hero-sub">
+            I build production-grade ML pipelines and AI-native automation that replace manual bottlenecks with measurable speed, accuracy, and ROI. Currently interning at FlyRank on AI Fluency.
+        </p>
+        <div class="hero-links">
+            <a href="https://github.com/CodeByQasim" target="_blank" rel="noopener" class="btn-primary" id="hero-github-btn">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/ghulam-qasim-khaskheli-64b6b026a/" target="_blank" rel="noopener" class="btn-ghost" id="hero-linkedin-btn">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+            </a>
+            <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks" target="_blank" rel="noopener" class="btn-ghost" id="hero-portfolio-btn">
+                📁 Internship Portfolio
+            </a>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat-item">
+            <span class="stat-number">14</span>
+            <span class="stat-label">FlyRank assignments shipped</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">~10×</span>
+            <span class="stat-label">Speed gain in ML refactoring pipeline</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">91%</span>
+            <span class="stat-label">NLP classifier target accuracy</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">AI tools in daily workflow</span>
+        </div>
+    </div>
+
+    <!-- CAPABILITIES -->
+    <section id="capabilities">
+        <div class="section-label">What I Build</div>
+        <h2 class="section-title">Production ML & AI Systems</h2>
+        <p class="section-desc">Three things I actually build, not things I've read about.</p>
+        <div class="capabilities-grid">
+            <div class="cap-card">
+                <div class="cap-icon" style="background: rgba(59,130,246,0.12);">🤖</div>
+                <h3>ML Pipelines & Automation</h3>
+                <p>End-to-end machine learning workflows — from raw data to deployed model — with measurable time and accuracy outcomes. I automate the repetitive and ship the intelligent.</p>
+            </div>
+            <div class="cap-card">
+                <div class="cap-icon" style="background: rgba(139,92,246,0.12);">🔤</div>
+                <h3>NLP & Text Processing</h3>
+                <p>Classification, summarization, and extraction systems using Python and HuggingFace. Real use cases: ticket routing, document analysis, structured output from unstructured text.</p>
+            </div>
+            <div class="cap-card">
+                <div class="cap-icon" style="background: rgba(16,185,129,0.12);">⚡</div>
+                <h3>AI-Native Workflow Design</h3>
+                <p>Redesigning manual processes as AI-first workflows — using agents, prompt engineering, and automation tools to compress hours of work into seconds of output.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="section-label">Work</div>
+        <h2 class="section-title">Projects & Case Studies</h2>
+        <p class="section-desc">Real work, real outcomes. No filler.</p>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag tag-blue">Python</span>
+                        <span class="tag tag-green">Automation</span>
+                        <span class="tag tag-amber">ML</span>
+                    </div>
+                    <h3>ML Code Refactoring Pipeline</h3>
+                    <p>Built a 3-step AI-assisted pipeline that takes raw, unstructured ML code and refactors it to production standards. Ran 5 real iterations. Reduced manual refactoring time by approximately 10× compared to doing it by hand.</p>
+                    <span class="project-result">✦ ~10× speed improvement on real ML code</span>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/AI%20Fluency%20Assignment%20Tasks/%2312%20Ship%20an%20Automation%20Workflow" target="_blank" class="project-link" id="proj1-link" title="View project">→</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag tag-purple">NLP</span>
+                        <span class="tag tag-blue">HuggingFace</span>
+                        <span class="tag tag-green">Classification</span>
+                    </div>
+                    <h3>NLP Ticket Routing Classifier <span style="font-size: 0.75rem; color: var(--amber); font-weight: 600;">— In progress</span></h3>
+                    <p>Fine-tuning a BERT-based model on 500 support tickets to auto-classify into 6 categories (billing, technical, account, shipping, general, urgent). Target: compress a 2–3 hour daily manual routing task to a 4-second script run.</p>
+                    <span class="project-result">✦ Target: 91% accuracy, 4-second run time</span>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks" target="_blank" class="project-link" id="proj2-link" title="View project">→</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag tag-green">Agent</span>
+                        <span class="tag tag-purple">Claude</span>
+                        <span class="tag tag-blue">AI Tooling</span>
+                    </div>
+                    <h3>ML Study Coach Agent (FL-07)</h3>
+                    <p>Personal AI agent built on Claude Projects. Pastes a concept or paper excerpt, agent explains it in plain terms grounded in my project context, quizzes retention, and identifies the exact gap. Replaces 45-minute Googling with a 10-minute targeted session.</p>
+                    <span class="project-result">✦ Live agent with FlyRank KB as data source</span>
+                </div>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks/tree/main/AI%20Fluency%20Assignment%20Tasks/%2316%20Design%20Your%20Personal%20Agent%20-%20FL-06" target="_blank" class="project-link" id="proj3-link" title="View project">→</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONNECT / LINKS BAR -->
+    <section id="connect">
+        <div class="section-label">Connect</div>
+        <h2 class="section-title">Find Me Online</h2>
+        <div class="links-bar">
+            <div class="links-bar-left">
+                <h3>Ghulam Qasim</h3>
+                <p>Machine Learning & AI Fluency Intern · FlyRank · Open to opportunities</p>
+            </div>
+            <div class="links-bar-right">
+                <a href="https://github.com/CodeByQasim" target="_blank" rel="noopener" class="link-chip" id="link-github">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/ghulam-qasim-khaskheli-64b6b026a/" target="_blank" rel="noopener" class="link-chip" id="link-linkedin">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/CodeByQasim/AI-Fluency-Assignment-Tasks" target="_blank" rel="noopener" class="link-chip" id="link-portfolio">
+                    📁 Internship Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLYRANK BADGE -->
+    <section>
+        <div class="badge-section">
+            <h3>FlyRank AI Fluency Internship</h3>
+            <p>Completing the FlyRank General AI Fluency track — 14 deliverables across ML pipelines, agent design, prompt engineering, and live deployment.</p>
+            <div class="flyrank-badge">🎖 FlyRank AI Fluency — In Progress</div>
+        </div>
+    </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <p>© 2026 Ghulam Qasim · <a href="https://aifluency.flyrank.ai" target="_blank">FlyRank AI Fluency Intern</a></p>
+        <p>Built with HTML & CSS · Deployed on Netlify</p>
+    </div>
+</footer>
+
+</body>
+</html>
