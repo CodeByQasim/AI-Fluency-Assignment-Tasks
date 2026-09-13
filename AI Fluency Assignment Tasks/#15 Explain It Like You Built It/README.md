@@ -1,4 +1,4 @@
-# Task 1: Explain It Like You Built It
+# Task : Explain It Like You Built It
 
 **Assignment:** Week 5 — Explain It Like You Built It  
 **Track:** General AI Fluency  
