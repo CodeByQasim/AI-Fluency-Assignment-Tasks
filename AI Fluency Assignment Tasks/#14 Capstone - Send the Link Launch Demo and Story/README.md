@@ -74,7 +74,11 @@ Paste the new case summary and say: "Add this to my portfolio context." Claude a
 - **Title:** "Add NLP Case Study to Portfolio"
 - **Notes in reminder:** "Use the 3-beat shape. Add folder #15, update index.html card, git push from root. Open Claude Project for voice consistency."
 
-> *Screenshot of calendar reminder: To be added when reminder app confirms — reminder title "Add NLP Case Study to Portfolio" set for Oct 11, 2026 at 10:00 AM.*
+**Evidence — Google Calendar screenshots (October 11, 2026):**
+
+![Calendar view showing reminder on Oct 11 2026](./calendar-reminder-1.png)
+
+![Task detail: Add NLP Case Study to Portfolio with description](./calendar-reminder-2.png)
 
 ---
 
