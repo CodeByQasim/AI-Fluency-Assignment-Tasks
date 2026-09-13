@@ -517,14 +517,97 @@
             text-decoration: none;
         }
 
+        /* ─── CONTACT FORM ─── */
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-2);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-2);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.9rem;
+            min-height: 44px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px var(--blue-glow);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-status {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+        }
+
+        .form-status.success {
+            display: block;
+            background: rgba(16,185,129,0.15);
+            border: 1px solid rgba(16,185,129,0.3);
+            color: var(--green);
+        }
+
+        .form-status.error {
+            display: block;
+            background: rgba(239,68,68,0.15);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #EF4444;
+        }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width: 640px) {
-            .nav-links { display: none; }
-            .hero { padding: 4rem 0 3rem; }
-            .stats { gap: 1.5rem; }
+            .nav-inner { padding: 0.85rem 1rem; }
+            .nav-links { gap: 1rem; font-size: 0.8rem; }
+            .hero { padding: 3.5rem 0 2.5rem; }
+            .hero h1 { font-size: 2.1rem; }
+            .stats { gap: 1.25rem; grid-template-columns: repeat(2, 1fr); display: grid; }
             .project-card { flex-direction: column; }
-            .project-link { align-self: flex-start; }
+            .project-link { align-self: flex-start; min-height: 44px; min-width: 44px; }
             .links-bar { flex-direction: column; align-items: flex-start; }
+            .form-grid { grid-template-columns: 1fr; }
+            .btn-primary, .btn-ghost, .link-chip { min-height: 44px; justify-content: center; width: 100%; }
         }
     </style>
 </head>
@@ -540,6 +623,7 @@
         <ul class="nav-links">
             <li><a href="#capabilities">What I Build</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li><a href="#connect">Connect</a></li>
         </ul>
     </div>
@@ -662,6 +746,43 @@
         </div>
     </section>
 
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Send a Message</h2>
+        <p class="section-desc">Have a question, opportunity, or collaboration idea? Send me a message directly.</p>
+
+        <div class="contact-card">
+            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" data-netlify="true" name="contact">
+                <input type="hidden" name="access_key" value="03a088bd-8db4-46c5-a6ff-544464c2ecaa">
+                <input type="hidden" name="subject" value="New Portfolio Contact Form Submission from Ghulam Qasim Site">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Alex Rivera" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="alex@example.com" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" class="form-control" placeholder="Tell me about your project, team, or opportunity..." required></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" id="submit-btn" style="cursor: pointer; border: none;">
+                    <span>Send Message</span>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+
+                <div id="form-status" class="form-status"></div>
+            </form>
+        </div>
+    </section>
+
     <!-- CONNECT / LINKS BAR -->
     <section id="connect">
         <div class="section-label">Connect</div>
@@ -704,6 +825,53 @@
         <p>Built with HTML & CSS · Deployed on Netlify</p>
     </div>
 </footer>
+
+<script>
+    const form = document.getElementById('contact-form');
+    const result = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            result.className = 'form-status';
+            result.style.display = 'block';
+            result.innerHTML = '<span>Sending message...</span>';
+            if (submitBtn) submitBtn.disabled = true;
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let res = await response.json();
+                if (response.status == 200 || res.success) {
+                    result.className = 'form-status success';
+                    result.innerHTML = '✓ Message sent successfully! I will reply to your email soon.';
+                    form.reset();
+                } else {
+                    result.className = 'form-status error';
+                    result.innerHTML = '✕ ' + (res.message || 'Something went wrong. Please try again.');
+                }
+            })
+            .catch(error => {
+                result.className = 'form-status error';
+                result.innerHTML = '✕ Network error. Please check your connection.';
+            })
+            .then(function() {
+                if (submitBtn) submitBtn.disabled = false;
+            });
+        });
+    }
+</script>
 
 </body>
 </html>
